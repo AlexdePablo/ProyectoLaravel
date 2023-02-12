@@ -12,7 +12,7 @@ class Empreses extends Controller
 {
    public function getAllEmpreses()
    {
-       $empreses = Empresa::all();
+       $empreses = Empresa::paginate(5);
        //return $enviaments->toJson();
 
        return view('empreses.empreses', [
@@ -31,25 +31,25 @@ class Empreses extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   $this->validator($request);
         $empresa = new Empresa();
         $empresa->name = $request-> name;
         $empresa->adresa = $request->adresa;
         $empresa->email = $request->email;
         $empresa->telefon = $request->telefon;
         $empresa -> save();
-        return redirect('empreses');
+        return redirect('empreses')->with('success-add', 'Empresa afegida correctament');
     }
     public function editStore(Request $request, int $id)
     {
-
+        $this->validator($request);
         $empresa = Empresa::find($id);
         $empresa->name = $request-> name;
         $empresa->adresa = $request->adresa;
         $empresa->email = $request->email;
         $empresa->telefon = $request->telefon;
         $empresa -> save();
-        return redirect('empreses');
+        return redirect('empreses')->with('success-edit', 'Empresa editada correctament');
     }
     public function getDataEdit(int $id)
     {
@@ -81,6 +81,16 @@ class Empreses extends Controller
         return redirect('empreses.empreses');
     }
 
+
+    public function Validator(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:50'],
+            'adresa' => ['required', 'string', 'max:100'],
+            'telefon' => ['required','numeric'],
+            'email' => ['required', 'string', 'email','max:255', 'unique:empresa'],
+        ]);
+    }
 
 
 }

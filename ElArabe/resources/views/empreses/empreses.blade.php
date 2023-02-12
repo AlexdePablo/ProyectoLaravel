@@ -14,6 +14,16 @@
                     <a href="addEmpresa" class="btn btn-primary">Nueva Empresa</a>
                 </div>
             </div>
+            @if(session('success-edit'))
+                <div class="form-group alert  alert-success" role="success-edit">
+                    {{session('success-edit')}}
+                </div>
+            @endif
+            @if(session('success-add'))
+                <div class="form-group alert  alert-success" role="success-add">
+                    {{session('success-add')}}
+                </div>
+            @endif
         </div>
     </div>
     <table class="estilo container table table-striped table-responsive table-bordered">
@@ -38,4 +48,7 @@
         @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        {!! $empreses->links() !!}
+    </div>
 @endsection

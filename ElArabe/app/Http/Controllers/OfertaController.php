@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class OfertaController extends Controller
 {
     public function getAllOfertas()
-    {
-        $ofertes = Oferta::all();
-        $empreses = Empresa::all();
+    {   $empreses = Empresa::all();
+        $ofertes = Oferta::paginate(5);
+
         return view('ofertes.gettAllOfertes', [
             'ofertes' => $ofertes, 'empreses' => $empreses]);
     }
@@ -58,7 +58,7 @@ class OfertaController extends Controller
         $oferta->idEmpresa = $request->idEmpresa;
         $oferta->idEstudis = $request->idEstudis;
         $oferta -> save();
-        return redirect('oferta');
+        return redirect('oferta')->with('success-add', 'Oferta afegida correctament');
     }
     public function editStore(Request $request, int $id)
     {
@@ -72,7 +72,7 @@ class OfertaController extends Controller
         $oferta->idEmpresa = $request->idEmpresa;
         $oferta->idEstudis = $request->idEstudis;
         $oferta -> save();
-        return redirect('oferta');
+        return redirect('oferta')->with('success-edit', 'Oferta editada correctament');
     }
     public function getDataEdit(int $id)
     {
@@ -109,6 +109,13 @@ class OfertaController extends Controller
         $oferta = Oferta::find($id);
         $oferta->NombreVacants = $oferta->NombreVacants - $numVacants;
         $oferta -> save();
-        return redirect('oferta');
+        return redirect('oferta')->with('success-vacants', 'El nombre de vacants ha sigut restat correctament' );
+    }
+    public function Validator(Request $request, Oferta $oferta)
+    {
+        $this->validate($request, [
+            'NombreVacants' => ['required'],
+
+        ]);
     }
 }

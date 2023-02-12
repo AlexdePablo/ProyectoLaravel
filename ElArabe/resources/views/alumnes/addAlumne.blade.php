@@ -10,18 +10,36 @@
         <h4>Nou Alumne</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form method="post" action="/addAlumneStore" >
+                <form method="post" action="/addAlumneStore">
+                    @csrf
                     <div class="form-group">
-                        <label for="name">Nom</label>
-                        <input type="text" class="form-control" name="name">
+                        <label for="name">{{__('Nom')}}</label>
+                        <input type="text"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="lastName">Cognom</label>
-                        <input type="text" class="form-control" name="lastName">
+                        <label for="lastName">{{__('Cognom')}}</label>
+                        <input type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
+                        @error('lastName')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="DNI">DNI</label>
-                        <input type="text" class="form-control" name="DNI">
+                        <label for="DNI">{{__('DNI')}}</label>
+                        <input type="text" class="form-control @error('DNI') is-invalid @enderror" name="DNI" value="{{ old('DNI') }}" required autocomplete="DNI" autofocus>
+
+                        @error('DNI')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="curs">Curs</label>
@@ -42,12 +60,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="telefon">Telèfon</label>
-                        <input type="number" class="form-control" name="telefon">
+                        <label for="telefon">{{ __('Telèfon') }}</label>
+                        <input type="number" class="form-control @error('telefon') is-invalid @enderror" name="telefon" value="{{ old('telefon') }}" required autocomplete="telefon" autofocus>
+
+                        @error('telefon')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <label for="email">{{ __('Email Address') }}</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="idTutor">Tutor</label>
@@ -68,13 +98,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label   for="ruta">Ruta</label>
-                        <input type="text" class="form-control" name="ruta">
+                        <label   for="ruta">{{ __('Ruta') }}</label>
+                        <input type="text" class="form-control @error('ruta') is-invalid @enderror" name="ruta" value="{{ old('ruta') }}" required autocomplete="ruta">
+
+                        @error('ruta')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Guardar">
                     </div>
-                    {{ csrf_field() }}
                 </form>
             </div>
         </div>

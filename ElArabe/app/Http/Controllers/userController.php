@@ -18,6 +18,7 @@ class userController extends Controller
 
     public function editStore(Request $request)
     {
+        $this->Validator($request);
         $id = auth()->user()->idUsuari;
         $user = User::find($id);
         $user->name = $request-> name;
@@ -27,5 +28,13 @@ class userController extends Controller
         $user->Coordinador = $request->Coordinador;
         $user -> save();
         return redirect('/');
+    }
+    public function Validator(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'string', 'email', 'regex:/(.*)@carpediem\.net$/i','max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 }

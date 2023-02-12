@@ -14,6 +14,16 @@
                     <a href="addAlumne" class="btn btn-primary">Nou Alumne</a>
                 </div>
             </div>
+            @if(session('success-edit'))
+                <div class="form-group alert  alert-success" role="success-edit">
+                    {{session('success-edit')}}
+                </div>
+            @endif
+            @if(session('success-add'))
+                <div class="form-group alert  alert-success" role="success-add">
+                    {{session('success-add')}}
+                </div>
+            @endif
         </div>
     </div>
     <table class="container table table-striped table-responsive table-bordered">
@@ -64,5 +74,7 @@
         @endforeach
         </tbody>
     </table>
-
+    <div class="d-flex justify-content-center">
+        {!! $alumnes->links() !!}
+    </div>
 @endsection

@@ -10,21 +10,11 @@ use function Sodium\add;
 class enviamentsOberts extends Controller
 {
 
-    public function getAllEnviaments(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function getAllEnviaments()
     {
-        //$envasifnasd = ();
-        $enviaments = Enviament::all();
-        return $enviaments->toJson();
-       foreach ($enviaments as $enviament)
-        {
-            if($enviament['Estat'] == 'Acceptat'){
-                $envasifnasd.array_push($envasifnasd, $enviament);
-            }
-
-        }
-
-        return view('enviamentsOberts', [
-            'envasifnasd' => $envasifnasd]);
+        $enviaments = Enviament::paginate(5);
+        return view('enviaments.getAllEnviaments', [
+            'enviaments' => $enviaments]);
     }
 
     public function ChangeEstat(int $idEnviament, $estat)
@@ -41,7 +31,7 @@ class enviamentsOberts extends Controller
     {
         //config(['app.idEdit' => $id]);
         $enviament = Enviament::find($id);
-        return view('ofertes.canviEstat', [
+        return view('enviaments.canviEstat', [
             'enviament' => $enviament]);
     }
 
@@ -51,8 +41,6 @@ class enviamentsOberts extends Controller
         $Enviament = Enviament::find($id);
         $Enviament -> Estat = $estat;
         $Enviament -> save();
-        $enviaments = Enviament::all();
-        return view('enviaments.getAllEnviamentsOberts', [
-            'envasifnasd' => $enviaments]);
+        return redirect('getEnviaments')->with('success-add', 'Estat del enviament canviat correctament');
     }
 }

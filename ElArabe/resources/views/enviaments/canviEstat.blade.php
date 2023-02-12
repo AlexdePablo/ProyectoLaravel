@@ -10,7 +10,7 @@
         <h4>Resta NumVacants de l'Oferta {{$enviament['idEnviaments']}}</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form method="post" action="/restaNumVacants/{{$enviament['idEnviaments']}}" >
+                <form method="post" action="/canviEstatEnviament/{{$enviament['idEnviaments']}}" >
                     <div class="form-group">
                         <label for="cicle"> cicle</label>
                         <br>

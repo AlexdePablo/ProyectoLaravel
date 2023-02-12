@@ -41,7 +41,7 @@
                                 <a class="nav-link" href="oferta">{{ __('Ofertes') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="fitxa">{{ __('Edita el perfil') }}</a>
+                                <a class="nav-link" href="getEnviaments">{{ __('Enviaments') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="fitxa">{{ __('Edita el perfil') }}</a>

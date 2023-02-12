@@ -27,7 +27,7 @@ Route::get('/insert', [App\Http\Controllers\HomeController::class, 'index'])->na
 //rutas de enviaments
 Route::get('/enviaments/editarEstat/{id}', [\App\Http\Controllers\enviamentsOberts::class, 'getestatsEdit']);
 Route::get('/oferta/enviar/canviEstat/{idEnviament}/{Estat}', [\App\Http\Controllers\enviamentsOberts::class, 'ChangeEstat']);
-//Route::get('/getEnviaments', [enviamentsOberts::class, 'getAllEnviaments']);
+Route::get('/getEnviaments', [enviamentsOberts::class, 'getAllEnviaments']);
 //Route::get('/getEnviaments', 'enviamentsOberts@getAllEnviaments')->name('getEnviaments');
 
 Route::post('/canviEstatEnviament/{id}', [\App\Http\Controllers\enviamentsOberts::class, 'canviEstatEnviament']);
@@ -38,13 +38,12 @@ Route::get('/empreses', [\App\Http\Controllers\Empreses::class, 'getAllEmpreses'
 Route::get('/empreses/add/{nom}/{adresa}/{telefon}/{correu}', [\App\Http\Controllers\Empreses::class, 'addEmpresa']);
 Route::get('/empresa/edit/{id}/{nom?}/{adresa?}/{telefon?}/{correu?}', [\App\Http\Controllers\Empreses::class, 'editEmpresa']);
 Route::get('/empreses/edit/{id}', [\App\Http\Controllers\Empreses::class, 'getDataEdit']);
-Route::get('/addEmpresa', [\App\Http\Controllers\Empreses::class, 'addEmpresaView']);
 //Route::get('/empresa/oferta/edit/{id}/{descripcio?}/{NombreVacants?}/{Curs?}/{NomContacte?}/{CognomsContacte?}/{EmailContacte?}',[\App\Http\Controllers\OfertaController::class,'editOferta']);
 //Route::get('/empresa/oferta/add/{descripcio}/{NombreVacants}/{Curs}/{NomContacte}/{CognomsContacte}/{EmailContacte}/{$idCicle}/{idEmpresa}',[\App\Http\Controllers\OfertaController::class,'addOferta']);
 //Route::get('/empreses/add/{nom}/{adresa}/{telefon}/{correu}', [\App\Http\Controllers\Empreses::class, 'store']);
 //Route::get('/empreses/add', [\App\Http\Controllers\Empreses::class, 'addEmpreses']);
 
-Route::view('/empreses/add','empreses.addEmpresa');
+Route::view('/addEmpresa','empreses.addEmpresa');
 
 Route::post('/addEmpresaStore', [\App\Http\Controllers\Empreses::class, 'store']);
 Route::post('/editEmpresaStore/{id}', [\App\Http\Controllers\Empreses::class, 'editStore']);

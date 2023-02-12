@@ -13,7 +13,7 @@ class alumnecontroler extends Controller
     public function getAllAlumnes()
     {
         $alumnos = array();
-        $alumnes = Alumne::all();
+        $alumnes = Alumne::paginate(5);
         $tutors = User::all();
         if ($this->getUsuari()==0){
            foreach ($alumnes as $alumne){
@@ -88,7 +88,7 @@ class alumnecontroler extends Controller
         $alumne->fent_practiques = $request->fent_practiques;
         $alumne->ruta = $request->ruta;
         $alumne -> save();
-        return redirect('alumnes');
+        return redirect('alumnes')->with('success-add', 'Alumne afegit correctament');
     }
     public function editStore(Request $request, int $id)
     {
@@ -105,16 +105,17 @@ class alumnecontroler extends Controller
         $alumne->fent_practiques = $request->fent_practiques;
         $alumne->ruta = $request->ruta;
         $alumne -> save();
-        return redirect('alumnes');
+        return redirect('alumnes')->with('success-edit', 'Alumne editat correctament');
     }
     public function Validator(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'lastName' => 'required|max:255',
-            'DNI' => 'required',
-            'telefon' => 'required|numeric',
-            'email' => ['required', 'string', 'email', 'regex:/(.*)@carpediem\.net$/i','max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:50'],
+            'lastName' => 'required|max:50',
+            'DNI' => 'required|max:9|min:9',
+            'telefon' => ['required','numeric'],
+            'email' => ['required', 'string', 'email', 'regex:/(.*)@carpediem\.net$/i','max:255', 'unique:alumnes'],
+            'ruta' => 'required',
         ]);
     }
     public function getCicle(string $nomCicle)

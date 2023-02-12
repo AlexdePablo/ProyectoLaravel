@@ -14,8 +14,25 @@
                     <a href="addOferta" class="btn btn-primary">Nova Oferta</a>
                 </div>
             </div>
+            @if(session('success-edit'))
+                <div class="form-group alert  alert-success" role="success-edit">
+                    {{session('success-edit')}}
+                </div>
+            @endif
+            @if(session('success-add'))
+                <div class="form-group alert  alert-success" role="success-add">
+                    {{session('success-add')}}
+                </div>
+            @endif
+            @if(session('success-vacants'))
+                <div class="form-group alert  alert-success" role="success-vacants">
+                    {{session('success-vacants')}}
+                </div>
+            @endif
         </div>
     </div>
+
+
     <table class="container table table-striped table-responsive table-bordered">
         <thead>
         <tr>
@@ -56,4 +73,7 @@
         @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        {!! $ofertes->links() !!}
+    </div>
 @endsection

@@ -32,8 +32,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="DNI">DNI</label>
-                        <input type="text" class="form-control" name="DNI">
+                        <label for="DNI">{{__('DNI')}}</label>
+                        <input type="text" class="form-control @error('DNI') is-invalid @enderror" name="DNI" value="{{ old('DNI') }}" required autocomplete="DNI" autofocus>
+
+                        @error('DNI')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="curs">Curs</label>
@@ -54,12 +60,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="telefon">Telèfon</label>
-                        <input type="number" class="form-control" name="telefon">
+                        <label for="telefon">{{ __('Telèfon') }}</label>
+                        <input type="number" class="form-control @error('telefon') is-invalid @enderror" name="telefon" value="{{ old('telefon') }}" required autocomplete="telefon" autofocus>
+
+                        @error('telefon')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <label for="email">{{ __('Email Address') }}</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="idTutor">Tutor</label>
@@ -80,8 +98,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label   for="ruta">Ruta</label>
-                        <input type="text" class="form-control" name="ruta">
+                        <label   for="ruta">{{ __('Ruta') }}</label>
+                        <input type="text" class="form-control @error('ruta') is-invalid @enderror" name="ruta" value="{{ old('ruta') }}" required autocomplete="ruta">
+
+                        @error('ruta')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Guardar">
