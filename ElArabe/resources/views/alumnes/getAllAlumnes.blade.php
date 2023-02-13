@@ -41,6 +41,7 @@
             <th>Fent pràctiques</th>
             <th>Currículum</th>
             <th>Editar alumne</th>
+            <th>Afegir Oferta</th>
         </tr>
         </thead>
         <tbody>
@@ -70,6 +71,12 @@
                 @endforeach
                 <td><center>{{$alumne['ruta']}}</center></td>
                 <td><center><a  href="alumnes/edit/{{$alumne['idAlumne']}}"  class="btn btn-primary">Edita l'alumne</a></center></td>
+                @if($alumne['fent_practiques'] == 0)
+                    <td><center><a  href="afegirOferta/{{$alumne['idAlumne']}}"  class="btn btn-primary">Afegeix Oferta</a></center></td>
+                @endif
+
+
+
             </tr>
         @endforeach
         </tbody>

@@ -13,8 +13,9 @@ class enviamentsOberts extends Controller
     public function getAllEnviaments()
     {
         $enviaments = Enviament::paginate(5);
+        $alumnes = Alumne::all();
         return view('enviaments.getAllEnviaments', [
-            'enviaments' => $enviaments]);
+            'enviaments' => $enviaments,'alumnes' => $alumnes]);
     }
 
     public function ChangeEstat(int $idEnviament, $estat)

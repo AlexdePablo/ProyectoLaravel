@@ -40,7 +40,11 @@
         @foreach($enviaments as $enviament)
             <tr>
                 <td><center>{{$enviament['idOferta']}}</center></td>
-                <td><center>{{$enviament['idAlumne']}}</center></td>
+                @foreach($alumnes as $alumne)
+                    @if($alumne['idAlumne'] == $enviament['idAlumne'])
+                        <td><center>{{$alumne['name']}}</center></td>
+                    @endif
+                @endforeach
                 <td><center>{{$enviament['Observacions']}}</center></td>
                 <td><center>{{$enviament['Estat']}}</center></td>
                 <td><center><a  href="/enviaments/editarEstat/{{$enviament['idEnviaments']}}"  class="btn btn-primary">Edita l'enviament</a></center></td>

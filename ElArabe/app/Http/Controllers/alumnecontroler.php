@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Cicles;
+use App\Mail\OfertaAlumne;
 use App\Models\Alumne;
 use App\Models\Empresa;
+use App\Models\Oferta;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -130,6 +132,22 @@ class alumnecontroler extends Controller
         return view('alumnes.editAlumne', [
             'alumne' => $alumne,
             'tutors' => $tutors]);
+    }
+    public function getDataEmail(int $id)
+    {
+        $ofertes = array();
+        $alumne = Alumne::find($id);
+        $ofertesMala = Oferta::all();
+
+        foreach ($ofertesMala as $oferta) {
+            if($oferta['NombreVacants']>0){
+                array_push($ofertes, $oferta);
+            }
+        }
+
+        return view('alumnes.afegirOferta', [
+            'alumne' => $alumne,
+            'ofertes' => $ofertes]);
     }
     public function getUsuari()
     {
